@@ -1,22 +1,44 @@
 import { NunitoText700 } from "@/utils/Font";
-import { Box, Button, Container, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Grid,
+  GridItem,
+  Text,
+} from "@chakra-ui/react";
 import { InputSearch } from "../InputSearch/InputSearch";
 import { AddIcon } from "@chakra-ui/icons";
 import { Tab } from "./Tab/Tab";
 import { mockUser } from "@/mocks/users";
 import { Row } from "./Row/Row";
+import { Badge } from "../Badge/Badge";
+import { useState } from "react";
+import { IUser } from "@/@types/user";
 
 export const Table = () => {
+  const [filter, setFilter] = useState<IUser>();
+
+  function handleFilterByTab(newFilter: IUser) {
+    setFilter(newFilter);
+  }
   return (
     <Container
       bg={"#F5F5F9"}
-      w={"85vw"}
+      w={"90vw"}
       h={"90vh"}
       position={"fixed"}
-      left={"13.5vw"}
-      top={"15vh"}
+      left={"15vw"}
+      top={"13vh"}
     >
-      <Box m={10} w={"98%"} bg={"white"} position={"relative"}>
+      <Box
+        m={10}
+        w={"90%"}
+        bg={"white"}
+        position={"relative"}
+        borderRadius={20}
+      >
         <Flex
           align={"center"}
           justifyContent={"space-between"}
@@ -46,19 +68,40 @@ export const Table = () => {
         </Flex>
 
         <Box>
-          <Flex>
-            <Tab
-              tabName="Usuários"
-              options={mockUser.map((item) => item.name)}
-            />
-            <Tab tabName="Email" options={mockUser.map((item) => item.email)} />
-            <Tab tabName="Perfil" options={mockUser.map((item) => item.role)} />
-            <Tab
-              tabName="Status"
-              options={mockUser.map((item) => item.status)}
-            />
-            <Tab tabName="Ações" />
-          </Flex>
+          <Grid templateColumns="repeat(5,1fr)">
+            <GridItem w="100%">
+              <Tab
+                choosed={() => handleFilterByTab}
+                tabName="Usuários"
+                options={mockUser.map((item) => item.name)}
+              />
+            </GridItem>
+            <GridItem w="100%">
+              <Tab
+                choosed={() => handleFilterByTab}
+                tabName="Email"
+                options={mockUser.map((item) => item.email)}
+              />
+            </GridItem>
+
+            <GridItem w="100%">
+              <Tab
+                choosed={() => handleFilterByTab}
+                tabName="Perfil"
+                options={mockUser.map((item) => item.role)}
+              />
+            </GridItem>
+            <GridItem w="100%">
+              <Tab
+                choosed={() => handleFilterByTab}
+                tabName="Status"
+                options={mockUser.map((item) => item.status)}
+              />
+            </GridItem>
+            <GridItem w="100%">
+              <Tab tabName="Ações" />
+            </GridItem>
+          </Grid>
         </Box>
         <Box>
           {mockUser.map((items, idx) => (

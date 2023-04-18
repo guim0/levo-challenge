@@ -11,7 +11,7 @@ export const UserToggler = () => {
         p={10}
         maxW={200}
         height={50}
-        paddingLeft={30}
+        paddingLeft={20}
         className={styles.toggler}
       >
         <Flex alignItems={"center"} gap={16}>

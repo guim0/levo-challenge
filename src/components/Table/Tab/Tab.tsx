@@ -10,22 +10,35 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import { useState } from "react";
 
 interface ITab {
   tabName: string;
-  options?: string[] | boolean[];
+  options?: string[];
+  choosed?: () => void;
 }
 
-export const Tab = ({ tabName, options }: ITab) => {
+export const Tab = ({ tabName, options, choosed }: ITab) => {
+  const [option, setOption] = useState<string>();
+
+  function handleChange(optionChoosed: string) {
+    setOption(optionChoosed);
+  }
+
   return (
-    <Box p={10} bg={"#59595944"} maxWidth={380} width={"100%"}>
-      <Flex align={"center"} justifyContent={"space-between"}>
+    <Box bg={"#59595944"}>
+      <Flex align={"center"} justifyContent={"space-between"} paddingLeft={10}>
         <Text style={NunitoText700.style} fontSize={14}>
           {tabName}
         </Text>
 
         {options ? (
-          <Flex align={"center"} borderRight={"1.2px solid #59595944"} gap={5}>
+          <Flex
+            align={"center"}
+            borderRight={"1.2px solid #59595944"}
+            gap={5}
+            marginRight={10}
+          >
             <UpDownIcon />
             <Menu>
               <MenuButton outline={"none"} border={"none"} bg={"transparent"}>
@@ -38,7 +51,9 @@ export const Tab = ({ tabName, options }: ITab) => {
               </MenuButton>
               <MenuList>
                 {options?.map((item, idx) => (
-                  <MenuItem key={idx}>{item}</MenuItem>
+                  <MenuItem key={idx} onClick={() => handleChange(item)}>
+                    {item}
+                  </MenuItem>
                 ))}
               </MenuList>
             </Menu>

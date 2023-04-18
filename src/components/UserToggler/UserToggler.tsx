@@ -1,6 +1,6 @@
 import { PoppinsText400, PoppinsText600 } from "@/utils/Font";
 import { Box, Flex, Icon, Text } from "@chakra-ui/react";
-import { TriangleDownIcon } from "@chakra-ui/icons";
+
 import styles from "./UserToggler.module.css";
 
 export const UserToggler = () => {
@@ -21,8 +21,6 @@ export const UserToggler = () => {
               </span>
             </Flex>
           </Box>
-
-          <Icon as={TriangleDownIcon} />
         </Flex>
       </Box>
     </>

@@ -4,6 +4,7 @@ import { InputSearch } from "../InputSearch/InputSearch";
 import { AddIcon } from "@chakra-ui/icons";
 import { Tab } from "./Tab/Tab";
 import { mockUser } from "@/mocks/users";
+import { Row } from "./Row/Row";
 
 export const Table = () => {
   return (
@@ -58,6 +59,11 @@ export const Table = () => {
             />
             <Tab tabName="Ações" />
           </Flex>
+        </Box>
+        <Box>
+          {mockUser.map((items, idx) => (
+            <Row {...items} key={idx} />
+          ))}
         </Box>
       </Box>
     </Container>

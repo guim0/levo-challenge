@@ -1,4 +1,6 @@
-export const mockUser = [
+import { IUser } from "@/@types/user";
+
+export const mockUser: IUser[] = [
   {
     name: "Texeira Adm",
     email: "texeiraadm@adm.com",

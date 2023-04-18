@@ -18,7 +18,7 @@ interface ITab {
 
 export const Tab = ({ tabName, options }: ITab) => {
   return (
-    <Box p={10} bg={"#59595944"} maxWidth={380}>
+    <Box p={10} bg={"#59595944"} maxWidth={380} width={"100%"}>
       <Flex align={"center"} justifyContent={"space-between"}>
         <Text style={NunitoText700.style} fontSize={14}>
           {tabName}

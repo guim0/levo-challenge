@@ -24,24 +24,26 @@ export const Tab = ({ tabName, options }: ITab) => {
           {tabName}
         </Text>
 
-        <Flex align={"center"} borderRight={"1.2px solid #59595944"} gap={5}>
-          <UpDownIcon />
-          <Menu>
-            <MenuButton outline={"none"} border={"none"} bg={"transparent"}>
-              <Image
-                src={"/icon-filter.svg"}
-                alt="filter by"
-                width={16}
-                height={16}
-              />
-            </MenuButton>
-            <MenuList>
-              {options?.map((item, idx) => (
-                <MenuItem key={idx}>{item}</MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
-        </Flex>
+        {options ? (
+          <Flex align={"center"} borderRight={"1.2px solid #59595944"} gap={5}>
+            <UpDownIcon />
+            <Menu>
+              <MenuButton outline={"none"} border={"none"} bg={"transparent"}>
+                <Image
+                  src={"/icon-filter.svg"}
+                  alt="filter by"
+                  width={16}
+                  height={16}
+                />
+              </MenuButton>
+              <MenuList>
+                {options?.map((item, idx) => (
+                  <MenuItem key={idx}>{item}</MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Flex>
+        ) : null}
       </Flex>
     </Box>
   );

@@ -9,28 +9,37 @@ export const Row = ({ name, email, role, status }: IUser) => {
   const router = useRouter();
   return (
     <Grid
-      templateColumns="repeat(5,1fr)"
-      paddingLeft={20}
+      templateColumns="repeat(5, 30% 30% 20% 15% 5%)"
+      w={"100%"}
       style={NunitoText400.style}
       borderTop="1px solid #59595927"
       alignItems={"center"}
     >
-      <GridItem w="100%">
-        <Text>{name}</Text>
+      <GridItem>
+        <Text ml={10}>{name}</Text>
       </GridItem>
-      <GridItem w="100%">
-        <Text>{email}</Text>
+      <GridItem>
+        <Text ml={10}>{email}</Text>
       </GridItem>
-      <GridItem w="100%">
-        <Text>{role}</Text>
+      <GridItem>
+        <Text ml={10}>{role}</Text>
       </GridItem>
-      <GridItem w="100%">
+      <GridItem>
         <Badge status={status} />
       </GridItem>
       <GridItem
-        w="20%"
         cursor="pointer"
-        onClick={() => router.push("/register")}
+        onClick={() =>
+          router.push({
+            pathname: "/register",
+            query: {
+              userName: name,
+              userEmail: email,
+              userRole: role,
+              status: status === "ATIVO" ? true : false,
+            },
+          })
+        }
       >
         <Tooltip
           placement={"top"}

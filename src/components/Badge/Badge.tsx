@@ -6,6 +6,7 @@ interface IBadge {
 export const Badge = ({ status }: IBadge) => {
   return (
     <Box
+      data-testid="badge"
       borderRadius={100}
       w={90}
       height={24}

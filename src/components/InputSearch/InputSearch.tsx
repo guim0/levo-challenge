@@ -15,7 +15,7 @@ export const InputSearch = ({ borderRadius }: InputSearchProps) => {
         type="name"
         placeholder="Pesquisar"
         color={"#595959"}
-        paddingLeft={40}
+        pl={40}
         w={150}
         h={40}
         borderRadius={borderRadius ?? 100}

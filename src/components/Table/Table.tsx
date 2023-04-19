@@ -2,6 +2,7 @@ import { NunitoText700 } from "@/utils/Font";
 import {
   Box,
   Button,
+  Checkbox,
   Container,
   Flex,
   Grid,
@@ -13,25 +14,22 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Tab } from "./Tab/Tab";
 import { mockUser } from "@/mocks/users";
 import { Row } from "./Row/Row";
-import { Badge } from "../Badge/Badge";
-import { useState } from "react";
-import { IUser } from "@/@types/user";
 import { useRouter } from "next/router";
 
 export const Table = () => {
   const router = useRouter();
+
   return (
     <Container
       bg={"#F5F5F9"}
-      w={"90vw"}
-      h={"90vh"}
-      position={"fixed"}
+      w={"85%"}
+      position={"absolute"}
       left={"15vw"}
       top={"13vh"}
     >
       <Box
         m={10}
-        w={"90%"}
+        w={"95%"}
         bg={"white"}
         position={"relative"}
         borderRadius={20}
@@ -43,7 +41,6 @@ export const Table = () => {
 
           <Flex gap={10}>
             <InputSearch />
-
             <Button
               cursor="pointer"
               leftIcon={<AddIcon color={"#090C11"} w={14} />}
@@ -60,42 +57,45 @@ export const Table = () => {
           </Flex>
         </Flex>
 
-        <Box>
-          <Grid templateColumns="repeat(5,1fr)">
-            <GridItem w="100%">
-              <Tab
-                tabName="Usuários"
-                options={mockUser.map((item) => item.name)}
-              />
-            </GridItem>
-            <GridItem w="100%">
-              <Tab
-                tabName="Email"
-                options={mockUser.map((item) => item.email)}
-              />
-            </GridItem>
+        <Grid
+          templateColumns="repeat(5, 30% 30% 20% 15% 5%)"
+          w={"100%"}
+          bg={"#59595944"}
+        >
+          <GridItem>
+            <Tab
+              tabName="Usuários"
+              options={mockUser.map((item) => item.name)}
+            />
+          </GridItem>
+          <GridItem>
+            <Tab tabName="Email" options={mockUser.map((item) => item.email)} />
+          </GridItem>
 
-            <GridItem w="100%">
-              <Tab
-                tabName="Perfil"
-                options={mockUser.map((item) => item.role)}
-              />
-            </GridItem>
-            <GridItem w="100%">
-              <Tab
-                tabName="Status"
-                options={mockUser.map((item) => item.status)}
-              />
-            </GridItem>
-            <GridItem w="100%">
-              <Tab tabName="Ações" />
-            </GridItem>
-          </Grid>
-        </Box>
+          <GridItem>
+            <Tab tabName="Perfil" options={mockUser.map((item) => item.role)} />
+          </GridItem>
+          <GridItem>
+            <Tab
+              tabName="Status"
+              options={mockUser.map((item) => item.status)}
+            />
+          </GridItem>
+          <GridItem>
+            <Tab tabName="Ações" />
+          </GridItem>
+        </Grid>
+
         <Box>
           {mockUser.map((items, idx) => (
             <Row {...items} key={idx} />
           ))}
+        </Box>
+
+        <Box p={20}>
+          <Text style={NunitoText700.style} color={"##595959"}>
+            Resultados: 1 - {mockUser.length}
+          </Text>
         </Box>
       </Box>
     </Container>

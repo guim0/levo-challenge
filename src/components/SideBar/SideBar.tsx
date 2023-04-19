@@ -7,11 +7,7 @@ export const SideBar = () => {
     <Box w={272} height={"85vh"} alignSelf={"flex-start"}>
       <Flex direction={"column"} alignItems={"center"}>
         <Box w={"80%"}>
-          <Flex
-            align={"center"}
-            justifyContent={"space-between"}
-            marginBottom={12}
-          >
+          <Flex align={"center"} justifyContent={"space-between"} mb={12}>
             <Text color="#595959" style={NunitoText700.style} fontSize={14}>
               Conta
             </Text>
@@ -23,8 +19,8 @@ export const SideBar = () => {
             align={"center"}
             gap={17}
             borderRadius={10}
-            paddingLeft={17}
-            marginBottom={10}
+            pl={17}
+            mb={10}
           >
             <Image
               width={22.1}
@@ -42,10 +38,10 @@ export const SideBar = () => {
             align={"center"}
             gap={18}
             borderRadius={10}
-            paddingLeft={18}
+            pl={18}
           >
             <SettingsIcon />
-            <Text style={NunitoText700.style} fontSize={14} marginLeft={5}>
+            <Text style={NunitoText700.style} fontSize={14} ml={5}>
               Configurações
             </Text>
           </Flex>

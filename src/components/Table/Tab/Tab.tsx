@@ -4,7 +4,6 @@ import { UpDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
   Menu,
   MenuButton,
@@ -14,18 +13,20 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { useState } from "react";
-
+import styles from "./Tab.module.css";
+import React, { ReactNode, useState } from "react";
+import { Checkbox } from "antd";
 interface ITab {
   tabName: string;
   options?: string[];
-  choosed?: () => void;
 }
 
-export const Tab = ({ tabName, options, choosed }: ITab) => {
+export const Tab = ({ tabName, options }: ITab) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
-    <Box bg={"#59595944"}>
-      <Flex align={"center"} justifyContent={"space-between"} paddingLeft={10}>
+    <Box>
+      <Flex align={"center"} justifyContent={"space-between"} pl={10}>
         <Text style={NunitoText700.style} fontSize={14}>
           {tabName}
         </Text>
@@ -35,11 +36,16 @@ export const Tab = ({ tabName, options, choosed }: ITab) => {
             align={"center"}
             borderRight={"1.2px solid #59595944"}
             gap={5}
-            marginRight={10}
+            mr={10}
           >
             <UpDownIcon />
-            <Menu>
-              <MenuButton outline={"none"} border={"none"} bg={"transparent"}>
+            <Menu isOpen={isOpen}>
+              <MenuButton
+                outline={"none"}
+                border={"none"}
+                bg={"transparent"}
+                onClick={() => setIsOpen(true)}
+              >
                 <Image
                   src={"/icon-filter.svg"}
                   alt="filter by"
@@ -58,14 +64,11 @@ export const Tab = ({ tabName, options, choosed }: ITab) => {
                 >
                   <InputSearch borderRadius={10} />
                 </MenuItem>
+
                 <MenuList>
                   {options?.map((item, idx) => (
                     <MenuItem key={idx} border={"none"} bg={"white"} p={12}>
-                      <Flex alignItems={"center"} gap={5}>
-                        <Checkbox colorScheme="red" size={"sm"}>
-                          {item}
-                        </Checkbox>
-                      </Flex>
+                      <Checkbox>{item}</Checkbox>
                     </MenuItem>
                   ))}
                 </MenuList>
@@ -81,6 +84,7 @@ export const Tab = ({ tabName, options, choosed }: ITab) => {
                     style={NunitoText400.style}
                     fontSize={14}
                     color="#595959"
+                    cursor={"pointer"}
                   >
                     Reset
                   </Text>
@@ -91,6 +95,7 @@ export const Tab = ({ tabName, options, choosed }: ITab) => {
                     border={"none"}
                     borderRadius={4}
                     style={NunitoText700.style}
+                    onClick={() => setIsOpen(false)}
                   >
                     OK
                   </Button>

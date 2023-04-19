@@ -1,8 +1,6 @@
 import { PoppinsText400, PoppinsText700 } from "@/utils/Font";
-import { Box, Flex, HStack, Icon, Text } from "@chakra-ui/react";
-import { CheckCircleIcon, TriangleDownIcon } from "@chakra-ui/icons";
-
-import styles from "./UserToggler.module.css";
+import { Box, Flex, Text } from "@chakra-ui/react";
+import { TriangleDownIcon } from "@chakra-ui/icons";
 
 export const UserToggler = () => {
   return (
@@ -12,7 +10,7 @@ export const UserToggler = () => {
         maxW={200}
         height={50}
         paddingLeft={20}
-        className={styles.toggler}
+        borderLeft="1px solid #59595960"
       >
         <Flex alignItems={"center"} gap={16}>
           <Box bg={"#73CF71"} w={40} h={40} borderRadius={100} />
@@ -23,9 +21,7 @@ export const UserToggler = () => {
                 Matheus S.
               </Text>
 
-              <span className={styles.subtitle} style={PoppinsText400.style}>
-                Admin
-              </span>
+              <span style={PoppinsText400.style}>Admin</span>
             </Flex>
           </Box>
           <TriangleDownIcon w={10} h={10} />

@@ -10,6 +10,7 @@
 
 ### What was used to build this web-app?
 
+- Yarn
 - NextJS/React
 - Chakra UI
 - Chakra UI Icons

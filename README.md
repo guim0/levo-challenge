@@ -6,7 +6,7 @@
 
 ### This is a mocked Dashboard so there is no backend on it, was created only the frontend screens.
 
-[Click Here to Access the Dashboard deployed on Vercel]('https://levo-challenge.vercel.app/')
+[Click Here to Access the Dashboard deployed on Vercel](https://levo-challenge.vercel.app/)
 
 ### What was used to build this web-app?
 

@@ -1,7 +1,11 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
-export const InputSearch = () => {
+interface InputSearchProps {
+  borderRadius?: number;
+}
+
+export const InputSearch = ({ borderRadius }: InputSearchProps) => {
   return (
     <InputGroup>
       <InputLeftElement pointerEvents="auto">
@@ -14,7 +18,7 @@ export const InputSearch = () => {
         paddingLeft={40}
         w={150}
         h={40}
-        borderRadius={100}
+        borderRadius={borderRadius ?? 100}
         border="1px solid #F5F5F9"
       />
     </InputGroup>

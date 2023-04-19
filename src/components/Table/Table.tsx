@@ -16,13 +16,10 @@ import { Row } from "./Row/Row";
 import { Badge } from "../Badge/Badge";
 import { useState } from "react";
 import { IUser } from "@/@types/user";
+import { useRouter } from "next/router";
 
 export const Table = () => {
-  const [filter, setFilter] = useState<IUser>();
-
-  function handleFilterByTab(newFilter: IUser) {
-    setFilter(newFilter);
-  }
+  const router = useRouter();
   return (
     <Container
       bg={"#F5F5F9"}
@@ -39,12 +36,7 @@ export const Table = () => {
         position={"relative"}
         borderRadius={20}
       >
-        <Flex
-          align={"center"}
-          justifyContent={"space-between"}
-          paddingLeft={48}
-          paddingRight={48}
-        >
+        <Flex align={"center"} justifyContent={"space-between"} pl={48} pr={48}>
           <Text style={NunitoText700.style} fontSize={24}>
             Usuários
           </Text>
@@ -61,6 +53,7 @@ export const Table = () => {
               border={"none"}
               p={12}
               borderRadius={25}
+              onClick={() => router.push("/register")}
             >
               CADASTRAR USUÁRIOS
             </Button>
@@ -71,14 +64,12 @@ export const Table = () => {
           <Grid templateColumns="repeat(5,1fr)">
             <GridItem w="100%">
               <Tab
-                choosed={() => handleFilterByTab}
                 tabName="Usuários"
                 options={mockUser.map((item) => item.name)}
               />
             </GridItem>
             <GridItem w="100%">
               <Tab
-                choosed={() => handleFilterByTab}
                 tabName="Email"
                 options={mockUser.map((item) => item.email)}
               />
@@ -86,14 +77,12 @@ export const Table = () => {
 
             <GridItem w="100%">
               <Tab
-                choosed={() => handleFilterByTab}
                 tabName="Perfil"
                 options={mockUser.map((item) => item.role)}
               />
             </GridItem>
             <GridItem w="100%">
               <Tab
-                choosed={() => handleFilterByTab}
                 tabName="Status"
                 options={mockUser.map((item) => item.status)}
               />

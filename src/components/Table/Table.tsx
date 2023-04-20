@@ -2,12 +2,15 @@ import { NunitoText700 } from "@/utils/Font";
 import {
   Box,
   Button,
+  Center,
   Checkbox,
   Container,
   Flex,
   Grid,
   GridItem,
+  Spinner,
   Text,
+  effect,
 } from "@chakra-ui/react";
 import { InputSearch } from "../InputSearch/InputSearch";
 import { AddIcon } from "@chakra-ui/icons";
@@ -15,10 +18,35 @@ import { Tab } from "./Tab/Tab";
 import { mockUser } from "@/mocks/users";
 import { Row } from "./Row/Row";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export const Table = () => {
+  const [filter, setFilter] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
+  const handleFilter = (search: string) => {
+    if (search === "")
+      return mockUser.map((item, idx) => <Row key={idx} {...item} />);
+    {
+      /* TODO: FIX THIS Filter to sort by name or email
+    if (search !== "")
+      return Array(
+        mockUser.find((item) =>
+          item.name.toLocaleUpperCase().startsWith(filter)
+        )
+      ).map((item, idx) => <Row key={idx} email={ item?.email} />);*/
+    }
+  };
+  handleFilter;
+  useEffect(() => {
+    if (filter !== "") {
+      setLoading(true);
+      setTimeout(() => setLoading(false), 100);
+    }
+  }, [filter]);
+  console.log(filter);
   return (
     <Container
       bg={"#F5F5F9"}
@@ -40,7 +68,7 @@ export const Table = () => {
           </Text>
 
           <Flex gap={10}>
-            <InputSearch />
+            <InputSearch value={setFilter} />
             <Button
               cursor="pointer"
               leftIcon={<AddIcon color={"#090C11"} w={14} />}
@@ -64,19 +92,29 @@ export const Table = () => {
         >
           <GridItem>
             <Tab
+              filtered={setFilter}
               tabName="Usuários"
               options={mockUser.map((item) => item.name)}
             />
           </GridItem>
           <GridItem>
-            <Tab tabName="Email" options={mockUser.map((item) => item.email)} />
+            <Tab
+              filtered={setFilter}
+              tabName="Email"
+              options={mockUser.map((item) => item.email)}
+            />
           </GridItem>
 
           <GridItem>
-            <Tab tabName="Perfil" options={mockUser.map((item) => item.role)} />
+            <Tab
+              filtered={setFilter}
+              tabName="Perfil"
+              options={mockUser.map((item) => item.role)}
+            />
           </GridItem>
           <GridItem>
             <Tab
+              filtered={setFilter}
               tabName="Status"
               options={mockUser.map((item) => item.status)}
             />
@@ -86,17 +124,21 @@ export const Table = () => {
           </GridItem>
         </Grid>
 
-        <Box>
-          {mockUser.map((items, idx) => (
-            <Row {...items} key={idx} />
-          ))}
-        </Box>
+        <>
+          {loading ? (
+            <Flex justify={"center"} h={"50vh"}>
+              <Spinner m={50} w={200} height={200} color="#595959" />
+            </Flex>
+          ) : (
+            <Box>{handleFilter(filter)}</Box>
+          )}
 
-        <Box p={20}>
-          <Text style={NunitoText700.style} color={"##595959"}>
-            Resultados: 1 - {mockUser.length}
-          </Text>
-        </Box>
+          <Box p={20}>
+            <Text style={NunitoText700.style} color={"##595959"}>
+              Resultados: 1 - {mockUser.length}
+            </Text>
+          </Box>
+        </>
       </Box>
     </Container>
   );

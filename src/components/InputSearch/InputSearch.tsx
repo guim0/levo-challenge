@@ -3,15 +3,17 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
 interface InputSearchProps {
   borderRadius?: number;
+  value: (value: string) => void;
 }
 
-export const InputSearch = ({ borderRadius }: InputSearchProps) => {
+export const InputSearch = ({ borderRadius, value }: InputSearchProps) => {
   return (
     <InputGroup>
       <InputLeftElement pointerEvents="auto">
         <SearchIcon color="#595959" w={15} m={15} />
       </InputLeftElement>
       <Input
+        onChange={(e) => value(e.target.value.toLocaleUpperCase())}
         type="name"
         placeholder="Pesquisar"
         color={"#595959"}

@@ -19,9 +19,11 @@ import { Checkbox } from "antd";
 interface ITab {
   tabName: string;
   options?: string[];
+  filtered?: (value: any) => void;
 }
 
-export const Tab = ({ tabName, options }: ITab) => {
+export const Tab = ({ tabName, options, filtered }: ITab) => {
+  const [isChecked, setIsChecked] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -62,13 +64,18 @@ export const Tab = ({ tabName, options }: ITab) => {
                   borderTopRightRadius={6}
                   borderTopLeftRadius={6}
                 >
-                  <InputSearch borderRadius={10} />
+                  <InputSearch
+                    value={(value) => console.log(value)}
+                    borderRadius={10}
+                  />
                 </MenuItem>
 
                 <MenuList>
                   {options?.map((item, idx) => (
                     <MenuItem key={idx} border={"none"} bg={"white"} p={12}>
-                      <Checkbox>{item}</Checkbox>
+                      <Checkbox onChange={(value) => console.log(value)}>
+                        {item}
+                      </Checkbox>
                     </MenuItem>
                   ))}
                 </MenuList>
@@ -81,6 +88,7 @@ export const Tab = ({ tabName, options }: ITab) => {
                   align={"center"}
                 >
                   <Text
+                    onClick={() => setIsChecked(false)}
                     style={NunitoText400.style}
                     fontSize={14}
                     color="#595959"

@@ -48,7 +48,7 @@ const Register = () => {
     setTimeout(() => {
       setShowAlertSuccess(false);
       setShowAlertError(false);
-    }, 5000);
+    }, 2500);
   };
   return (
     <>
@@ -134,6 +134,7 @@ const Register = () => {
                     outline={"none"}
                     border="1px solid #59595928"
                     fontSize={16}
+                    errorBorderColor="red"
                   />
                 </Flex>
 
@@ -165,7 +166,7 @@ const Register = () => {
               </Text>
 
               <Flex direction="column">
-                <Text style={NunitoText700.style}>Ativar e inativar</Text>
+                <Text style={NunitoText700.style}> Inativar e Ativar </Text>
                 <Box>
                   <Switch
                     onChange={(value: boolean) => {

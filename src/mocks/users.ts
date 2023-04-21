@@ -61,10 +61,4 @@ export const mockUser: IUser[] = [
     role: "Administrador",
     status: "INATIVO",
   },
-  {
-    name: "Guilherme Moraes",
-    email: "guimo@dev.com",
-    role: "Desenvolvedor",
-    status: "ATIVO",
-  },
 ];

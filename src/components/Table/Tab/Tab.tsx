@@ -65,7 +65,7 @@ export const Tab = ({ tabName, options, filtered }: ITab) => {
                   borderTopLeftRadius={6}
                 >
                   <InputSearch
-                    value={(value) => console.log(value)}
+                    value={(e) => console.log(e)}
                     borderRadius={10}
                   />
                 </MenuItem>

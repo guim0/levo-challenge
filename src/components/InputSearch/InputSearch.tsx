@@ -13,7 +13,9 @@ export const InputSearch = ({ borderRadius, value }: InputSearchProps) => {
         <SearchIcon color="#595959" w={15} m={15} />
       </InputLeftElement>
       <Input
-        onChange={(e) => value(e.target.value.toLocaleUpperCase())}
+        onChange={(e) => {
+          value(e.target.value.toLocaleUpperCase());
+        }}
         type="name"
         placeholder="Pesquisar"
         color={"#595959"}

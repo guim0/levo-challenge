@@ -27,26 +27,38 @@ export const Table = () => {
   const router = useRouter();
 
   const handleFilter = (search: string) => {
-    if (search === "")
-      return mockUser.map((item, idx) => <Row key={idx} {...item} />);
-    {
-      /* TODO: FIX THIS Filter to sort by name or email
-    if (search !== "")
-      return Array(
-        mockUser.find((item) =>
-          item.name.toLocaleUpperCase().startsWith(filter)
-        )
-      ).map((item, idx) => <Row key={idx} email={ item?.email} />);*/
+    if (search === "") {
+      return mockUser.map((items, idx) => <Row key={idx} {...items} />);
+    }
+
+    if (search !== "") {
+      const filtered = mockUser.filter((item) =>
+        item.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+      );
+
+      return filtered.length <= 0 ? (
+        <Flex justifyContent={"center"}>
+          <Text style={NunitoText700.style} fontStyle={"24"}>
+            Nada foi encontrado 😔
+          </Text>
+        </Flex>
+      ) : (
+        filtered.map((items) => (
+          <>
+            <Row {...items} />
+          </>
+        ))
+      );
     }
   };
-  handleFilter;
+
   useEffect(() => {
     if (filter !== "") {
       setLoading(true);
-      setTimeout(() => setLoading(false), 100);
+      setTimeout(() => setLoading(false), 200);
     }
   }, [filter]);
-  console.log(filter);
+
   return (
     <Container
       bg={"#F5F5F9"}

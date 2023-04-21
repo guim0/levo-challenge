@@ -20,7 +20,7 @@ import type { CheckboxChangeEvent } from "antd/es/checkbox";
 interface ITab {
   tabName: string;
   options?: string[];
-  filtered: (value: any) => void;
+  filtered: (value: string) => void;
 }
 
 export const Tab = ({ tabName, options, filtered }: ITab) => {

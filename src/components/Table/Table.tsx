@@ -172,7 +172,7 @@ export const Table = () => {
             />
           </GridItem>
           <GridItem>
-            <Tab tabName="Ações" />
+            <Tab filtered={setFilter} tabName="Ações" />
           </GridItem>
         </Grid>
 

@@ -4,6 +4,7 @@ import { UpDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
+  CheckboxGroup,
   Flex,
   Menu,
   MenuButton,
@@ -13,17 +14,17 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import styles from "./Tab.module.css";
-import React, { ReactNode, useState } from "react";
+import React, { ReactEventHandler, ReactNode, useState } from "react";
 import { Checkbox } from "antd";
+import type { CheckboxChangeEvent } from "antd/es/checkbox";
 interface ITab {
   tabName: string;
   options?: string[];
-  filtered?: (value: any) => void;
+  filtered: (value: any) => void;
 }
 
 export const Tab = ({ tabName, options, filtered }: ITab) => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [hasValue, setHasValue] = useState();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -63,17 +64,19 @@ export const Tab = ({ tabName, options, filtered }: ITab) => {
                   border={"none"}
                   borderTopRightRadius={6}
                   borderTopLeftRadius={6}
-                >
-                  <InputSearch
-                    value={(e) => console.log(e)}
-                    borderRadius={10}
-                  />
-                </MenuItem>
-
+                />
+                <Box p={5}>
+                  <InputSearch value={filtered} borderRadius={10} />
+                </Box>
                 <MenuList>
                   {options?.map((item, idx) => (
                     <MenuItem key={idx} border={"none"} bg={"white"} p={12}>
-                      <Checkbox onChange={(value) => console.log(value)}>
+                      <Checkbox
+                        value={item}
+                        onChange={(e: CheckboxChangeEvent) => {
+                          filtered(e.target.value), setHasValue(e.target.value);
+                        }}
+                      >
                         {item}
                       </Checkbox>
                     </MenuItem>
@@ -88,7 +91,9 @@ export const Tab = ({ tabName, options, filtered }: ITab) => {
                   align={"center"}
                 >
                   <Text
-                    onClick={() => setIsChecked(false)}
+                    onClick={() => {
+                      hasValue ? location.reload() : filtered("");
+                    }}
                     style={NunitoText400.style}
                     fontSize={14}
                     color="#595959"

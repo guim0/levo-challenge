@@ -50,6 +50,45 @@ export const Table = () => {
         ))
       );
     }
+
+    if (filter !== "") {
+      if (filter.includes("@")) {
+        const filtered = mockUser.filter((item) => item.email === filter);
+        console.log(filtered);
+
+        return filtered.length <= 0 ? (
+          <Flex justifyContent={"center"}>
+            <Text style={NunitoText700.style} fontStyle={"24"}>
+              Nada foi encontrado 😔
+            </Text>
+          </Flex>
+        ) : (
+          filtered.map((items) => (
+            <>
+              <Row {...items} />
+            </>
+          ))
+        );
+      }
+      if (filter.includes("Gerente")) {
+        const filtered = mockUser.filter((item) => item.role.includes(filter));
+        console.log(filtered);
+
+        return filtered.length <= 0 ? (
+          <Flex justifyContent={"center"}>
+            <Text style={NunitoText700.style} fontStyle={"24"}>
+              Nada foi encontrado 😔
+            </Text>
+          </Flex>
+        ) : (
+          filtered.map((items) => (
+            <>
+              <Row {...items} />
+            </>
+          ))
+        );
+      }
+    }
   };
 
   useEffect(() => {
@@ -62,14 +101,15 @@ export const Table = () => {
   return (
     <Container
       bg={"#F5F5F9"}
-      w={"85%"}
+      w={"85.5%"}
+      h={"88vh"}
       position={"absolute"}
       left={"15vw"}
       top={"13vh"}
     >
       <Box
         m={10}
-        w={"95%"}
+        w={"97%"}
         bg={"white"}
         position={"relative"}
         borderRadius={20}

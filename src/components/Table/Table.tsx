@@ -47,43 +47,6 @@ export const Table = () => {
         ))
       );
     }
-
-    if (filter !== "") {
-      if (filter.includes("@")) {
-        const filtered = mockUser.filter((item) => item.email === filter);
-
-        return filtered.length <= 0 ? (
-          <Flex justifyContent={"center"}>
-            <Text style={NunitoText700.style} fontStyle={"24"}>
-              Nada foi encontrado 😔
-            </Text>
-          </Flex>
-        ) : (
-          filtered.map((items) => (
-            <>
-              <Row {...items} />
-            </>
-          ))
-        );
-      }
-      if (filter.includes("Gerente")) {
-        const filtered = mockUser.filter((item) => item.role.includes(filter));
-
-        return filtered.length <= 0 ? (
-          <Flex justifyContent={"center"}>
-            <Text style={NunitoText700.style} fontStyle={"24"}>
-              Nada foi encontrado 😔
-            </Text>
-          </Flex>
-        ) : (
-          filtered.map((items) => (
-            <>
-              <Row {...items} />
-            </>
-          ))
-        );
-      }
-    }
   };
 
   useEffect(() => {

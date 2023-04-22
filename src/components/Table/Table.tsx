@@ -2,15 +2,12 @@ import { NunitoText700 } from "@/utils/Font";
 import {
   Box,
   Button,
-  Center,
-  Checkbox,
   Container,
   Flex,
   Grid,
   GridItem,
   Spinner,
   Text,
-  effect,
 } from "@chakra-ui/react";
 import { InputSearch } from "../InputSearch/InputSearch";
 import { AddIcon } from "@chakra-ui/icons";
@@ -54,7 +51,6 @@ export const Table = () => {
     if (filter !== "") {
       if (filter.includes("@")) {
         const filtered = mockUser.filter((item) => item.email === filter);
-        console.log(filtered);
 
         return filtered.length <= 0 ? (
           <Flex justifyContent={"center"}>
@@ -72,7 +68,6 @@ export const Table = () => {
       }
       if (filter.includes("Gerente")) {
         const filtered = mockUser.filter((item) => item.role.includes(filter));
-        console.log(filtered);
 
         return filtered.length <= 0 ? (
           <Flex justifyContent={"center"}>

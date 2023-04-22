@@ -1,8 +1,8 @@
 import { IUser } from "@/@types/user";
 import { Badge } from "@/components/Badge/Badge";
-import { NunitoText400, NunitoText700 } from "@/utils/Font";
+import { NunitoText400 } from "@/utils/Font";
 import { EditIcon } from "@chakra-ui/icons";
-import { Flex, Grid, GridItem, Text, Tooltip } from "@chakra-ui/react";
+import { Grid, GridItem, Text, Tooltip } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 export const Row = ({ name, email, role, status }: IUser) => {
@@ -37,7 +37,7 @@ export const Row = ({ name, email, role, status }: IUser) => {
                 userName: name,
                 userEmail: email,
                 userRole: role,
-                status: status === "ATIVO" ? true : false,
+                userStatus: status === "ATIVO" ? true : false,
               },
             })
           }

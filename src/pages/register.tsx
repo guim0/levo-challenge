@@ -3,19 +3,11 @@ import { SideBar } from "@/components/SideBar/SideBar";
 import { mockUser } from "@/mocks/users";
 import { NunitoText400, NunitoText700 } from "@/utils/Font";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Input,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Input, Text } from "@chakra-ui/react";
 import { Switch, Select, Divider, Alert } from "antd";
 import { useRouter } from "next/router";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -29,7 +21,26 @@ const Register = () => {
   const router = useRouter();
 
   const { userName, userEmail, userRole, userStatus } = router.query;
-  const switchColor = isActive ? "#00A93E" : "#D30003";
+
+  const switchColor = () => {
+    if (userStatus === "true" || isActive === true) {
+      return "#00A93E";
+    }
+
+    if (userStatus === "false" || isActive === false) {
+      return "#D30003";
+    }
+  };
+
+  const switchDecision = () => {
+    if (userStatus === "true" || isActive === true) {
+      return true;
+    }
+
+    if (userStatus === "false" || isActive === false) {
+      return false;
+    }
+  };
 
   const handleSubmit = (values: {
     name: string;
@@ -167,13 +178,15 @@ const Register = () => {
 
               <Flex direction="column">
                 <Text style={NunitoText700.style}> Inativar e Ativar </Text>
+
                 <Box>
                   <Switch
+                    defaultChecked={switchDecision()}
                     onChange={(value: boolean) => {
                       setIsActive(!isActive),
                         setStatus(!value ? "INATIVO" : "ATIVO");
                     }}
-                    style={{ background: switchColor }}
+                    style={{ background: switchColor() }}
                   />
                 </Box>
               </Flex>

@@ -4,7 +4,6 @@ import { UpDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  CheckboxGroup,
   Flex,
   Menu,
   MenuButton,
@@ -14,7 +13,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { ReactEventHandler, ReactNode, useState } from "react";
+import { useState } from "react";
 import { Checkbox } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 interface ITab {
